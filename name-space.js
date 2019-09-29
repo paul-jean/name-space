@@ -1,37 +1,42 @@
 ; (function () {
     window.addEventListener('load', displayNames);
+    debugger
 })();
 
-function generateName() {
-    var mat = JSON.parse(get_req("./adj-matrix-neutral.json"));
+function generateName(adj_matrix) {
     var firstLetterIndex = getRandomIntInclusive(0, 25);
     var numLetters = getRandomIntInclusive(5, 15);
     var i = 0, firstLetter;
-    for (var letter in mat) {
+    for (var letter in adj_matrix) {
         if (i === firstLetterIndex) {
             firstLetter = letter;
             break;
         }
         i++;
     }
-    var row = mat[letter];
+    var row = adj_matrix[letter];
     var generatedName = [];
     var nextLetter = firstLetter;
     for (var i = 0; i < numLetters; i++) {
         generatedName.push(nextLetter);
         nextLetter = weightedRand(row);
-        row = mat[nextLetter];
+        row = adj_matrix[nextLetter];
     }
     return generatedName.join('');
 }
 
 function displayNames() {
-    var div = $('#names');
-    for (i = 0; i < 1000; i++) {
-        var name = generateName();
-        $(div).append(`<div class="name">${name}</div>`);
-    }
-    //div.innerHTML = name;
+    $.ajax({
+        dataType: "json",
+        url: "./adj-matrix-neutral.json",
+        success: function (adj_matrix) {
+            var div = $('#names');
+            for (i = 0; i < 1000; i++) {
+                var name = generateName(adj_matrix);
+                $(div).append(`<div class="name">${name}</div>`);
+            }
+        }
+    })
 }
 
 
