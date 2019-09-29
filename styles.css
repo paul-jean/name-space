@@ -1,21 +1,19 @@
-div.name {
-  float: left;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
+/*
 @media only screen and (max-width: 400) {
   div.name {
+    background-color: #F09A9D;
     font-size: 24px;
     min-width: 250px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 }
+*/
 
-@media only screen and (min-width: 401px) {
-  div.name {
-    font-size: 14px;
-    min-width: 150px;
-  }
+div.name {
+  float: left;
+  font-size: 20px;
+  min-width: 150px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
