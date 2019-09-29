@@ -1,6 +1,5 @@
 ; (function () {
     window.addEventListener('load', displayNames);
-    debugger
 })();
 
 function generateName(adj_matrix) {
